@@ -10,6 +10,19 @@ const router = VueRouter.createRouter({
             component: () => import('./components/Get.vue')
         },
 
+
+        {
+            path: '/dropzone',
+            name: 'dropzone',
+            component: () => import('./components/Dropzone.vue')
+        },
+
+        {
+            path: '/posts',
+            name: 'posts',
+            component: () => import('./pages/Posts.vue')
+        },
+
         {
             path: '/personal',
             name: 'user.personal',

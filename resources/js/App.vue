@@ -2,6 +2,7 @@
 
       <div id="app" class="container">
           <router-link v-if="token" :to="{name: 'get'}">get |</router-link>
+          <router-link v-if="token" :to="{name: 'posts'}">posts |</router-link>
           <router-link v-if="!token" :to="{name: 'user.login'}">login |</router-link>
           <router-link v-if="!token" :to="{name: 'user.registration'}">registration |</router-link>
           <router-link v-if="token" :to="{name: 'user.personal'}">personal |</router-link>
@@ -10,7 +11,7 @@
           <br>
 <!--          <router-view></router-view>-->
           <router-view :key="$route.fullPath" ></router-view>
-          <Index></Index>
+<!--          <Index></Index>-->
       </div>
 
 <!--    <div id="app" class="container" :key="componentKey" >
@@ -48,7 +49,7 @@ export default {
 
     updated() {
         this.getToken()
-        console.log('updated get token')
+        // console.log('updated get token')
     },
 
 
@@ -59,14 +60,14 @@ export default {
                 .then(res => {
                     localStorage.removeItem('x_xsrf_token')
                     this.$router.push({name: 'user.login'})
-                    console.log(res)
-                    console.log(' delete token')
+                    // console.log(res)
+                    // console.log(' delete token')
                 })
         },
 
         getToken() {
             this.token = localStorage.getItem('x_xsrf_token')
-            console.log('get token')
+            // console.log('get token')
         },
 
     }
