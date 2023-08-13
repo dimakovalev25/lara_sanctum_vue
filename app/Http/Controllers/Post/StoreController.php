@@ -22,13 +22,18 @@ class StoreController extends Controller
 
         foreach ($images as $image) {
             $name = md5(Carbon::now() . '_' . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension());
+            $preview_name = 'prev_'.$name;
             $path = Storage::disk('public')->putFileAs('/images', $image, $name);
 
             Image::create([
                'path'=> $path,
                 'url' => url('/storage/'.$path),
+                'preview_url' => url('/storage/images/'.$preview_name),
                 'post_id' => $post->id
             ]);
+
+            \Intervention\Image\Facades\Image::make($image)->fit(100, 100)->save(storage_path('app/public/images/'
+                .$preview_name));
 
         }
 
